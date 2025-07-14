@@ -73,7 +73,7 @@
     height: 50%;
   }
   
-  .trivia {
+  .quiz-container {
     height: 100%;
     display: flex;
     flex-direction: column;

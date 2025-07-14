@@ -78,7 +78,7 @@ export default function Control({
 
 
   return (
-    <div className="trivia">
+    <div className="quiz-container">
       <div className="question">{question?.question}</div>
       <div className="answers">
         {question?.answers.map((a, index) => (
