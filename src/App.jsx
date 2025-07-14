@@ -1,12 +1,11 @@
 
-
 // export default App;
-
 import "./app.css";
 import { useEffect, useMemo, useState } from "react";
 import Control from "./componenets/Control";
 import Timer from "./componenets/Timer";
 import Start from "./componenets/Start";
+
 
 function App() {
   const [username, setUsername] = useState(null);
