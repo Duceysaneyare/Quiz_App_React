@@ -90,73 +90,70 @@
     border: 2px solid white;
     font-size: 20px;
   }
-  
-  .answers {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+ .answers {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.answer {
+  width: 40%;
+  padding: 10px;
+  margin: 0 10px 20px 10px;
+  text-align: center;
+  background: linear-gradient(#0e0124, #22074d);
+  border: 1px solid white;
+  border-radius: 15px;
+  font-weight: 300;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.answer:hover,
+.answer.active {
+  background: mediumblue;
+}
+
+/* ✅ Correct Answer Animation */
+.answer.correct {
+  animation: correct 3s ease forwards;
+}
+
+/* ✅ Wrong Answer Shake Animation */
+.answer.wrong {
+  background: crimson !important;
+  color: white;
+  animation: shake 0.5s ease;
+}
+
+/* ✅ Correct animation keyframes */
+@keyframes correct {
+  0% {
+    background: green;
+    transform: scale(1);
   }
-  
-  .answer {
-    width: 40%;
-    padding: 10px;
-    margin: 0 10px 20px 10px;
-    text-align: center;
-    background: linear-gradient(#0e0124, #22074d);
-    border: 1px solid white;
-    border-radius: 15px;
-    font-weight: 300;
-    font-size: 20px;
-    cursor: pointer;
+  50% {
+    background: limegreen;
+    transform: scale(1.05);
   }
-  
-  .answer:hover,
-  .answer.active {
-    background: mediumblue;
+  100% {
+    background: green;
+    transform: scale(1);
   }
-  
-  .answer.correct {
-    animation: correct 3s ease forwards;
-  }
-  
-  @keyframes correct {
-    0%,
-    22%,
-    42% {
-      background: mediumblue;
-    }
-    20%,
-    40%,
-    60% {
-      background: linear-gradient(#0e0124, #22074d);
-    }
-    62%,
-    100% {
-      background: green;
-    }
-  }
-  
-  .answer.wrong {
-    animation: wrong 3s ease forwards;
-  }
-  
-  @keyframes wrong {
-    0%,
-    22%,
-    42% {
-      background: mediumblue;
-    }
-    20%,
-    40%,
-    60% {
-      background: linear-gradient(#0e0124, #22074d);
-    }
-    62%,
-    100% {
-      background: crimson;
-    }
-  }
+}
+
+/* ❌ Wrong answer shake keyframes */
+@keyframes shake {
+  0%   { transform: translateX(0px); }
+  25%  { transform: translateX(-5px); }
+  50%  { transform: translateX(5px); }
+  75%  { transform: translateX(-5px); }
+  100% { transform: translateX(0px); }
+}
+
   
   .endText {
     position: relative;

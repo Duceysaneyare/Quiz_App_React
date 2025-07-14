@@ -1,80 +1,91 @@
-
 import { useEffect, useState } from "react";
-// import useSound from "use-sound";
-// import play from "../sounds/play.wav";
-// import correct from "../sounds/correct.wav";
-// import wrong from "../sounds/wrong.wav";
+import useSound from "use-sound";
+import play from "../assets/play.wav";
+import correct from "../assets/correct.wav";
+import wrong from "../assets/wrong.wav";
 
 export default function Control({
   data,
   setStop,
   questionNumber,
   setQuestionNumber,
- 
 }) {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [className, setClassName] = useState("answer");
-  // const [letsPlay] = useSound(play);
-  // const [correctAnswer] = useSound(correct);
-  // const [wrongAnswer] = useSound(wrong);
-
-  // useEffect(() => {
-  //   letsPlay();
-  // }, [letsPlay]);
+  const [classNames, setClassNames] = useState({}); // store classes per answer
+  const [playSound] = useSound(play);
+  const [correctSound] = useSound(correct);
+  const [wrongSound] = useSound(wrong);
 
   useEffect(() => {
     setQuestion(data[questionNumber - 1]);
   }, [data, questionNumber]);
 
+  useEffect(() => {
+    playSound(); // play sound on question load
+  }, [playSound]);
+
   const delay = (duration, callback) => {
-    setTimeout(() => {
-      callback();
-    }, duration);
+    setTimeout(callback, duration);
   };
 
-  const handleClick = (a) => {
-    setSelectedAnswer(a);
-    setClassName("answer active");
-    delay(3000, () => {
-      setClassName(a.correct ? "answer correct" : "answer wrong");
-    });
-    // setTimeout(() => {
-    //   setClassName(a.correct ? "answer correct" : "answer wrong");
-    // }, 3000);
+ const handleClick = (answer) => {
+  if (selectedAnswer) return;
 
-    // setTimeout(() => {
-      delay(5000, () => {
-      if (a.correct) {
-        // correctAnswer();
-        delay(1000, () => {
-          setQuestionNumber((prev) => prev + 1);
-          setSelectedAnswer(null);
-        });
-        // setTimeout(() => {
-        //   setQuestionNumber((prev) => prev + 1);
-        //   setSelectedAnswer(null);
-        // }, 1000);
-      } else {
-        // wrongAnswer();
-        delay(1000, () => {
+  setSelectedAnswer(answer);
+
+  // Step 1: mark selected answer as active
+  setClassNames({ [answer.text]: "answer active" });
+
+  // Step 2: wait 1s → show wrong answer style if incorrect
+  delay(1000, () => {
+    if (!answer.correct) {
+      setClassNames((prev) => ({
+        ...prev,
+        [answer.text]: "answer wrong",
+      }));
+
+      // Step 3: wait 800ms → reveal the correct answer
+      delay(3000, () => {
+        const correctAnswer = question.answers.find((a) => a.correct);
+        setClassNames((prev) => ({
+          ...prev,
+          [correctAnswer.text]: "answer correct",
+        }));
+
+        wrongSound(); // play wrong sound
+
+        // Step 4: wait 3s then stop
+        delay(3000, () => {
           setStop(true);
         });
-        // setTimeout(() => {
-        //   setTimeOut(true);
-        // }, 1000);
-      }
-    // }, 5000);
-      })
-  };
+      });
+
+    } else {
+      // If correct
+      setClassNames({ [answer.text]: "answer correct" });
+      correctSound();
+
+      // Step 4: proceed to next question
+      delay(3000, () => {
+        setQuestionNumber((prev) => prev + 1);
+        setSelectedAnswer(null);
+        setClassNames({});
+      });
+    }
+  });
+};
+
+
   return (
     <div className="trivia">
       <div className="question">{question?.question}</div>
       <div className="answers">
-        {question?.answers.map((a) => (
+        {question?.answers.map((a, index) => (
           <div
-            className={selectedAnswer === a ? className : "answer"}
-            onClick={() => !selectedAnswer && handleClick(a)}
+            key={index}
+            className={classNames[a.text] || "answer"}
+            onClick={() => handleClick(a)}
           >
             {a.text}
           </div>
@@ -82,4 +93,4 @@ export default function Control({
       </div>
     </div>
   );
-};
+}
