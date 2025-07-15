@@ -29,23 +29,27 @@ export default function Control({
     setTimeout(callback, duration);
   };
 
- const handleClick = (answer) => {
+const handleClick = (answer) => {
   if (selectedAnswer) return;
 
   setSelectedAnswer(answer);
 
-  // Step 1: mark selected answer as active
+  // Mark selected answer as active
   setClassNames({ [answer.text]: "answer active" });
 
-  // Step 2: wait 1s → show wrong answer style if incorrect
+  // Delay before processing correctness
   delay(1000, () => {
     if (!answer.correct) {
+      // Step 1: Mark wrong answer
       setClassNames((prev) => ({
         ...prev,
         [answer.text]: "answer wrong",
       }));
 
-      // Step 3: wait 800ms → reveal the correct answer
+      // Step 2: Play wrong sound **first**
+      wrongSound();
+
+      // Step 3: After 3s, show correct highlight
       delay(3000, () => {
         const correctAnswer = question.answers.find((a) => a.correct);
         setClassNames((prev) => ({
@@ -53,9 +57,7 @@ export default function Control({
           [correctAnswer.text]: "answer correct",
         }));
 
-        wrongSound(); // play wrong sound
-
-        // Step 4: wait 3s then stop
+        // Step 4: Wait another 3s, then stop
         delay(3000, () => {
           setStop(true);
         });
@@ -63,20 +65,19 @@ export default function Control({
 
     } else {
       // If correct
-      setClassNames({ [answer.text]: "answer correct" });
-      correctSound();
+      delay(1000, () => {
+        setClassNames({ [answer.text]: "answer correct" });
+        correctSound();
 
-      // Step 4: proceed to next question
-      delay(3000, () => {
-        setQuestionNumber((prev) => prev + 1);
-        setSelectedAnswer(null);
-        setClassNames({});
+        delay(3000, () => {
+          setQuestionNumber((prev) => prev + 1);
+          setSelectedAnswer(null);
+          setClassNames({});
+        });
       });
     }
   });
 };
-
-
   return (
     <div className="quiz-container">
       <div className="question">{question?.question}</div>

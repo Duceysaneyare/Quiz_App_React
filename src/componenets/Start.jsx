@@ -11,7 +11,12 @@ export default function Start({ setUsername }) {
       setUsername(value);
       setError(""); // clear error
     } else {
-      setError("Please insert user to start");
+      setError("Please Enter Your Name to Start the Quiz.");
+
+      // Auto-hide error after 3 seconds
+      setTimeout(() => {
+        setError("");
+      }, 3000); // 3000 ms = 3 seconds
     }
   };
 
@@ -37,4 +42,3 @@ export default function Start({ setUsername }) {
     </>
   );
 }
-

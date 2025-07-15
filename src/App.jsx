@@ -14,68 +14,69 @@ function App() {
   const [earned, setEarned] = useState("$ 0");
 
   const data = [
-    {
+     {
       id: 1,
-      question: "What does HTML stand for?",
+      question: "When did the website Facebook launch?",
       answers: [
         {
-          text: "Hyperlinks and Text Markup Language",
-          correct: false,
-        },
-        {
-          text: "Hyper Text Markup Language  ",
+          text: "A. 2004",
           correct: true,
         },
         {
-          text: "Home Tool Markup Language",
+          text: "B. 2005",
           correct: false,
         },
         {
-          text: "Best Tool Markup Language",
+          text: "C. 2006",
+          correct: false,
+        },
+        {
+          text: "D. 2007",
           correct: false,
         },
       ],
     },
     {
       id: 2,
-      question: "When did the website `Facebook` launch?",
+      question: "When was the WhatsApp website launched?",
       answers: [
         {
-          text: "2004",
+          text: "A. 2006",
+          correct: false,
+        },
+        {
+          text: "B. 2007",
+          correct: false,
+        },
+        {
+          text: "C. 2008",
+          correct: false,
+        },
+        {
+          text: "D. 2009",
           correct: true,
-        },
-        {
-          text: "2005",
-          correct: false,
-        },
-        {
-          text: "2006",
-          correct: false,
-        },
-        {
-          text: "2007",
-          correct: false,
         },
       ],
     },
+   
     {
       id: 3,
       question: "Choose the correct HTML element for the largest heading?",
       answers: [
         {
-          text: "<h6>",
+          text: "A. <h6>",
           correct: false,
         },
         {
-          text: "<h1>",
+          text: "B. <h1>",
           correct: true,
         },
         {
-          text: "<head>",
+          text: "C. <head>",
           correct: false,
         },
         {
-          text: "<heading>",
+          text: "D. <heading>",
           correct: false,
         },
       ],
@@ -85,19 +86,19 @@ function App() {
       question: "Which input type defines a slider control?",
       answers: [
         {
-          text: "slider",
+          text: "A. slider",
           correct: false,
         },
         {
-          text: "controls",
+          text: "B. controls",
           correct: false,
         },
         {
-          text: "search",
+          text: "C. search",
           correct: false,
         },
         {
-          text: "range",
+          text: "D. range",
           correct: true,
         },
       ],
@@ -107,19 +108,19 @@ function App() {
       question: "Which method can be used to return a string in upper case letters?",
       answers: [
         {
-          text: "touppercase()",
+          text: "A. touppercase()",
           correct: false,
         },
         {
-          text: "toUpperCase()",
+          text: "B. toUpperCase()",
           correct: true,
         },
         {
-          text: "tuc()",
+          text: "C. tuc()",
           correct: false,
         },
         {
-          text: "upperCase()",
+          text: "D. upperCase()",
           correct: false,
         },
       ],
@@ -129,19 +130,19 @@ function App() {
       question: "Which operator can be used to compare two values?",
       answers: [
         {
-          text: "><",
+          text: "A. ><",
           correct: false,
         },
         {
-          text: "<>",
+          text: "B. <>",
           correct: false,
         },
         {
-          text: "==",
+          text: "C. ==",
           correct: true,
         },
         {
-          text: "=",
+          text: "D. =",
           correct: false,
         },
       ],
@@ -151,19 +152,19 @@ function App() {
       question: "What does CSS stand for?",
       answers: [
         {
-          text: "Cascading Style Sheet",
+          text: "A. Cascading Style Sheet",
           correct: true,
         },
         {
-          text: "Computer Style Sheets ",
+          text: "B. Computer Style Sheets ",
           correct: false,
         },
         {
-          text: "Creative Style Sheets",
+          text: "C. Creative Style Sheets",
           correct: false,
         },
         {
-          text: "Colorful Style Sheets",
+          text: "D. Colorful Style Sheets",
           correct: false,
         },
       ],
@@ -173,19 +174,19 @@ function App() {
       question: "Which HTML attribute is used to define inline styles?",
       answers: [
         {
-          text: "font",
+          text: "A. font",
           correct: false,
         },
         {
-          text: "style",
+          text: "B. style",
           correct: true,
         },
         {
-          text: "styles",
+          text: "C. styles",
           correct: false,
         },
         {
-          text: "class",
+          text: "D. class",
           correct: false,
         },
       ],
@@ -195,19 +196,19 @@ function App() {
       question: "Which MySQL statement is used to select data from a database?",
       answers: [
         {
-          text: "SELECT",
+          text: "A. SELECT",
           correct: true,
         },
         {
-          text: "OPEN",
+          text: "B. OPEN",
           correct: true,
         },
         {
-          text: "GET",
+          text: "C. GET",
           correct: false,
         },
         {
-          text: "EXTRACT",
+          text: "D. EXTRACT",
           correct: false,
         },
       ],
@@ -217,19 +218,19 @@ function App() {
       question: "Which MySQL statement is used to update data in a database?",
       answers: [
         {
-          text: "UPDATE",
+          text: "A. UPDATE",
           correct: true,
         },
         {
-          text: "INSERT",
+          text: "B. INSERT",
           correct: false,
         },
         {
-          text: "MODIFY",
+          text: "C. MODIFY",
           correct: false,
         },
         {
-          text: "SAVE",
+          text: "D. SAVE",
           correct: false,
         },
       ],
@@ -239,19 +240,19 @@ function App() {
       question: "Which MySQL statement is used to delete data from a database?",
       answers: [
         {
-          text: "SAVE",
+          text: "A. SAVE",
           correct: false,
         },
         {
-          text: "COLLAPSE",
+          text: "B. COLLAPSE",
           correct: false,
         },
         {
-          text: "REMOVE",
+          text: "C. REMOVE",
           correct: false,
         },
         {
-          text: "DELETE",
+          text: "D. DELETE",
           correct: true,
         },
       ],
@@ -261,19 +262,19 @@ function App() {
       question: "What does SQL stand for?",
       answers: [
         {
-          text: "Structured Query Language",
+          text: "A. Structured Query Language",
           correct: true,
         },
         {
-          text: "Structured Question Language",
+          text: "B. Structured Question Language",
           correct: false,
         },
         {
-          text: "Structured Control Language",
+          text: "C. Structured Control Language",
           correct: false,
         },
         {
-          text: "Strong Question Language ",
+          text: "D. Strong Question Language ",
           correct: false,
         },
       ],
@@ -283,19 +284,19 @@ function App() {
       question: "Which SQL keyword is used to sort the result-set?",
       answers: [
         {
-          text: "SORT BY",
+          text: "A. SORT BY",
           correct: false,
         },
         {
-          text: "ORDER BY",
+          text: "B. ORDER BY",
           correct: true,
         },
         {
-          text: "ORDER",
+          text: "C. ORDER",
           correct: false,
         },
         {
-          text: "SORT",
+          text: "D. SORT",
           correct: false,
         },
       ],
@@ -305,41 +306,41 @@ function App() {
       question: "Which SQL statement is used to create a database table called 'Customers'?",
       answers: [
         {
-          text: "CREATE TABLE Customers",
+          text: "A. CREATE TABLE Customers",
           correct: true,
         },
         {
-          text: "CREATE DB Customers",
+          text: "B. CREATE DB Customers",
           correct: false,
         },
         {
-          text: "CREATE DATABASE TABLE Customers",
+          text: "C. CREATE DATABASE TABLE Customers",
           correct: false,
         },
         {
-          text: "CREATE DATABASE TAB Customers",
+          text: "D. CREATE DATABASE TAB Customers",
           correct: false,
         },
       ],
     },
     {
       id: 15,
-      question: "Who is making the Web standards?",
+      question: "Who makes the web standards?",
       answers: [
         {
-          text: "Microsoft",
+          text: "A. Microsoft",
           correct: false,
         },
         {
-          text: "Mozilla",
+          text: "B. Mozilla",
           correct: false,
         },
         {
-          text: "Google",
+          text: "C. Google",
           correct: false,
         },
         {
-          text: "The World Wide Web Consortium  ",
+          text: "D. The World Wide Web Consortium(W3C)",
           correct: true,
         },
       ],
@@ -385,7 +386,7 @@ function App() {
             ) : (
               <>
                 <div className="top">
-                  <div className="timer">
+                  <div className="timer2">
                     <Timer
                       setStop={setStop}
                       questionNumber={questionNumber}
@@ -424,6 +425,7 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
 

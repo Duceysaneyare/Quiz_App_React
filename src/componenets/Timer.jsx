@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 
-export default function Timer({ setTimeOut, questionNumber }) {
+export default function Timer({ setStop, questionNumber }) {
   const [timer, setTimer] = useState(30);
 
   useEffect(() => {
-    if (timer === 0) return setTimeOut(true)
+    if (timer === 0) return setStop(true);
     const interval = setInterval(() => {
       setTimer((prev) => prev - 1);
     }, 1000);
     return () => clearInterval(interval);
-  }, [timer, setTimeOut]);
+  }, [timer, setStop]);
 
   useEffect(() => {
-    setTimer(300); // reset timer when question number changes
+    setTimer(20); // reset timer on question number change
   }, [questionNumber]);
-  return timer;
+
+  return <div className="timer">{timer}</div>;
 }

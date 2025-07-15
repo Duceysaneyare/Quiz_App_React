@@ -50,7 +50,7 @@
   }
   
   .top {
-    height: 50%;
+    height: 42%;
     position: relative;
   }
   
@@ -63,7 +63,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    bottom: 200px;
+    bottom: 150px;
     left: 80px;
     font-size: 30px;
     font-weight: 700;
@@ -166,46 +166,51 @@
   }
   
  .start {
-  width: 250px;
-  height: 100px;
+  width: 400px; 
+  height: auto; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   position: absolute;
-  top: 350px; 
-  left: 50%; 
-  transform: translateX(-50%); 
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 20px; 
 }
 
-  
-  .startInput {
-    width: 100%;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    font-family: Century Gothic;
-  }
-  
-  .startInput:focus {
-    outline: none;
-    margin-top: 10px;
-  }
-  
-  .startButton {
-    width: 100%;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    font-family: Century Gothic;
-    font-weight: 500;
-    margin-top: 10px;
-  } 
+.startInput {
+  width: 100%; 
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: Century Gothic;
+}
+
+.startInput:focus {
+  outline: none;
+}
+
+.startButton {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.errorText {
+  color: red;
+  font-size: 17px;
+  margin-top: 2px;
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+}
 .footer {
   width: 100%;
   height: 60px;
@@ -232,5 +237,4 @@
 .errorText {
   color: red;
   font-size: 14px;
-  margin-top: 15px;
 }
