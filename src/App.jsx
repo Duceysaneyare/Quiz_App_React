@@ -12,6 +12,7 @@ function App() {
   const [stop, setStop] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [earned, setEarned] = useState("$ 0");
+  const [wonAll, setWonAll] = useState(false);
 
   const data = [
      {
@@ -366,64 +367,105 @@ function App() {
         { id: 14, amount: "$ 500.000" },
         { id: 15, amount: "$ 1.000.000" },
       ].reverse(),
-    []
-  );
+        []
+            );
+          const handleRestart = () => {
+            setUsername(null);
+            setStop(false);
+            setQuestionNumber(1);
+            setWonAll(false);
+          };
 
-  useEffect(() => {
-    questionNumber > 1 &&
-      setEarned(moneyPyramid.find((m) => m.id === questionNumber - 1).amount);
-  }, [questionNumber, moneyPyramid]);
+            useEffect(() => {
+              if (questionNumber > 1 && questionNumber <= data.length) {
+                // Normal case: get prize of previous answered question
+                setEarned(
+                  moneyPyramid.find((m) => m.id === questionNumber - 1)?.amount
+                );
+              }
 
-  return (
-    <div className="app">
-      {!username ? (
-        <Start setUsername={setUsername} />
-      ) : (
-        <>
-          <div className="main">
-            {stop ? (
-              <h1 className="endText">You earned: {earned}</h1>
-            ) : (
+              if (questionNumber === data.length && stop) {
+                // Final case: user completed all questions correctly
+                setEarned(
+                  moneyPyramid.find((m) => m.id === questionNumber)?.amount
+                );
+              }
+            }, [questionNumber, moneyPyramid, stop, data.length]);
+
+              return (
+              <div className="app">
+                {!username ? (
+                  <Start setUsername={setUsername} />
+                ) : (
+                  <>
+                    <div className="main">
+                  {stop ? (
               <>
-                <div className="top">
-                  <div className="timer2">
-                    <Timer
-                      setStop={setStop}
-                      questionNumber={questionNumber}
-                    />
+                {wonAll ? (
+                  <div className="endText">
+                    <h1>🎉 Congratulations! You corrected all answers and earned: {earned}</h1>
+                    <button className="restart-btn" onClick={handleRestart}>
+                      Restart Quiz
+                    </button>
                   </div>
-                </div>
-                <div className="bottom">
-                  <Control
-                    data={data}   setStop={setStop}
+                ) : (
+                  <div className="endText">
+                    <h1>You earned: {earned}</h1>
+                    <button className="restart-btn" onClick={handleRestart}>
+                      Restart Quiz
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+            <>
+              <div className="top">
+                <div className="timer2">
+                  <Timer
+                    setStop={setStop}
                     questionNumber={questionNumber}
-                    setQuestionNumber={setQuestionNumber}
                   />
                 </div>
-              </>
-            )}
-          </div>
+              </div>
+              <div className="bottom">
+                <Control
+                  data={data}
+                  setStop={setStop}
+                  setWonAll={setWonAll}
+                  wonAll={wonAll}
+                  questionNumber={questionNumber}
+                  setQuestionNumber={setQuestionNumber}
+                />
+              </div>
+            </>
+          )}
+        </div>
+
+        {!wonAll && (
           <div className="pyramid">
-          <ul className="moneyList">
-                {moneyPyramid.map((m) => (
-                  <li
-                    key={m.id} 
-                    className={
-                      questionNumber === m.id
-                        ? "moneyListItem active"
-                        : "moneyListItem"
-                    }
-                  >
-                    <span className="moneyListItemNumber">{m.id}</span>
-                    <span className="moneyListItemAmount">{m.amount}</span>
-                  </li>
-                ))}
-              </ul>
+            <ul className="moneyList">
+              {moneyPyramid.map((m) => (
+                <li
+                  key={m.id}
+                  className={
+                    questionNumber === m.id
+                      ? "moneyListItem active"
+                      : "moneyListItem"
+                  }
+                >
+                  <span className="moneyListItemNumber">{m.id}</span>
+                  <span className="moneyListItemAmount">{m.amount}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </>
-      )}
-    </div>
-  );
+        )}
+      </>
+    )}
+  </div>
+);
+
+
 }
 
 
