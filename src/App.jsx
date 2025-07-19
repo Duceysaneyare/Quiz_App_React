@@ -370,7 +370,6 @@ function App() {
         []
             );
           const handleRestart = () => {
-            setUsername(null);
             setStop(false);
             setQuestionNumber(1);
             setWonAll(false);
